@@ -43,9 +43,3 @@ Content additions, corrections, and translations are all welcome. See [CONTRIBUT
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
-## Contact
-
-- Website: [papuachronicles.com](https://papuachronicles.com)
-- Email: info@papuachronicles.com
-- Discussions: [github.com/papuaopensource/papuachronicles/discussions](https://github.com/papuaopensource/papuachronicles/discussions)
