@@ -2,7 +2,7 @@
 
 Papua Chronicles is a collaborative, open-source reference site about Papua — its history, people, land, and present-day context. Maintained by the Papua Open Source community and open to anyone who cares about getting Papua's story right.
 
-[![Website](https://img.shields.io/badge/Website-papuachronicles.com-blue)](https://papuachronicles.com) [![GitHub Stars](https://img.shields.io/github/stars/papuaopensource/papuachronicles?style=social)](https://github.com/papuaopensource/papuachronicles/stargazers) [![Contributors](https://img.shields.io/github/contributors/papuaopensource/papuachronicles?style=social)](https://github.com/papuaopensource/papuachronicles/graphs/contributors)
+[![Website](https://img.shields.io/badge/Website-papuachronicles.com-blue)](https://papuachronicles.com)
 
 ## What the site covers
 
