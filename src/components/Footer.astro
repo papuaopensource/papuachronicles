@@ -1,46 +1,59 @@
 ---
-import { Button } from "@/components/ui/button";
 import Link from "@/components/Link.astro";
+import { Sun, Moon } from "lucide-react";
 ---
 
-<footer class="border-t py-6">
+<footer class="border-t border-border mt-auto">
   <div
-    class="container mx-auto flex flex-col md:flex-row md:justify-between items-center px-4"
+    class="max-w-5xl mx-auto flex flex-col sm:flex-row sm:justify-between items-center gap-6 px-4 py-10"
   >
-    <!-- Copyright -->
-    <p class="text-sm text-slate-500 mb-4 md:mb-0">
-      &copy; 2025 Papua Open Source. All rights reserved.
-    </p>
+    <p class="text-sm text-muted">&copy; 2026 Papua Open Source</p>
 
-    <!-- Links -->
-    <div class="flex items-center">
-      <Button variant="link" size="sm">
+    <div class="flex flex-col-reverse sm:flex-row items-center gap-5 sm:gap-6">
+      <nav class="flex items-center gap-6 text-sm text-muted">
         <Link
           href="/tentang/"
-          class="font-normal text-slate-500 hover:text-slate-700"
-          activeClass="text-slate-700 hover:text-slate-900"
+          class="hover:text-fg transition-colors"
+          activeClass="text-fg"
         >
           Tentang
         </Link>
-      </Button>
-      <Button variant="link" size="sm">
         <Link
           href="/kebijakan-privasi/"
-          class="font-normal text-slate-500 hover:text-slate-700"
-          activeClass="text-slate-700 hover:text-slate-900"
+          class="hover:text-fg transition-colors"
+          activeClass="text-fg"
         >
-          Kebijakan Privasi
+          Privasi
         </Link>
-      </Button>
-      <Button variant="link" size="sm">
         <Link
           href="/ketentuan-layanan/"
-          class="font-normal text-slate-500 hover:text-slate-700"
-          activeClass="text-slate-700 hover:text-slate-900"
+          class="hover:text-fg transition-colors"
+          activeClass="text-fg"
         >
-          Ketentuan Layanan
+          Layanan
         </Link>
-      </Button>
+      </nav>
+
+      <div
+        class="inline-flex items-center rounded-lg border border-border p-0.5"
+      >
+        <button
+          type="button"
+          data-theme-set="light"
+          class="theme-opt flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-muted transition-colors cursor-pointer"
+        >
+          <Sun className="h-3.5 w-3.5" />
+          Terang
+        </button>
+        <button
+          type="button"
+          data-theme-set="dark"
+          class="theme-opt flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs bg-surface-hover text-fg transition-colors cursor-pointer"
+        >
+          <Moon className="h-3.5 w-3.5" />
+          Gelap
+        </button>
+      </div>
     </div>
   </div>
 </footer>

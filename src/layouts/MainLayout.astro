@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import "@fontsource-variable/inter";
 import BaseHead from "@/components/BaseHead.astro";
 import Footer from "@/components/Footer.astro";
 
@@ -12,17 +11,40 @@ interface Props {
 const { title, description } = Astro.props as Props;
 ---
 
-<html lang="en">
+<html lang="id" class="dark scroll-smooth">
   <head>
     <BaseHead title={title} description={description} />
   </head>
 
-  <body>
-    <div class="min-h-screen flex flex-col">
-      <div class="flex-1 container mx-auto px-4 py-8 max-w-6xl">
-        <slot />
-        <Footer />
-      </div>
-    </div>
+  <body class="min-h-screen flex flex-col bg-bg text-fg antialiased">
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+    <Footer />
+
+    <script is:inline>
+      const options = document.querySelectorAll("[data-theme-set]");
+
+      function syncThemeUI() {
+        const isDark = document.documentElement.classList.contains("dark");
+        options.forEach((btn) => {
+          const active = btn.dataset.themeSet === (isDark ? "dark" : "light");
+          btn.classList.toggle("bg-surface-hover", active);
+          btn.classList.toggle("text-fg", active);
+          btn.classList.toggle("text-muted", !active);
+        });
+      }
+
+      options.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const theme = btn.dataset.themeSet;
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          localStorage.setItem("theme", theme);
+          syncThemeUI();
+        });
+      });
+
+      syncThemeUI();
+    </script>
   </body>
 </html>
