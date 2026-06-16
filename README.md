@@ -1,67 +1,51 @@
-<h1 align="center">Belajar Tentang Papua</h1>
+# Papua Chronicles
 
-<p align="center">
-  <img src="src/assets/images/papua-land.png" alt="Logo Belajar Tentang Papua" width="200"/>
-  <br>
-  <em>Menjelajahi kekayaan budaya, sejarah, dan keindahan alam Papua</em>
-</p>
+Papua Chronicles is a collaborative, open-source reference site about Papua — its history, people, land, and present-day context. Maintained by the Papua Open Source community and open to anyone who cares about getting Papua's story right.
 
-Situs "Belajar Tentang Papua" adalah kumpulan informasi sederhana tentang Papua yang dibuat secara kolaboratif dan bersifat open source. Proyek ini bertujuan untuk menyediakan sumber informasi yang komprehensif, akurat, dan mudah diakses tentang Papua.
+[![Website](https://img.shields.io/badge/Website-papuachronicles.com-blue)](https://papuachronicles.com) [![GitHub Stars](https://img.shields.io/github/stars/papuaopensource/papuachronicles?style=social)](https://github.com/papuaopensource/papuachronicles/stargazers) [![Contributors](https://img.shields.io/github/contributors/papuaopensource/papuachronicles?style=social)](https://github.com/papuaopensource/papuachronicles/graphs/contributors)
 
-[![Lihat Website](https://img.shields.io/badge/Lihat-Website-blue)](https://belajartentangpapua.web.id)
-[![GitHub Stars](https://img.shields.io/github/stars/papua-opensource/belajartentangpapua?style=social)](https://github.com/papua-opensource/belajartentangpapua/stargazers)
-[![GitHub Contributors](https://img.shields.io/github/contributors/papua-opensource/belajartentangpapua?style=social)](https://github.com/papua-opensource/belajartentangpapua/graphs/contributors)
+## What the site covers
 
-## 🌟 Fitur
+- **FAQ & Glosarium** — Common questions answered and key terms explained
+- **Galeri** — Photos of Papua's landscapes and cultural life
+- **Jejak Sejarah** — A timeline of Papua from pre-colonial times to the present
+- **Wilayah Adat** — The seven customary regions of Papua and the peoples who inhabit them
+- **Bahasa Daerah** — Hundreds of regional languages spoken across Papua
+- **Seni & Kerajinan** — Asmat woodcarving, noken, bark painting, and other traditional arts
+- **Alam Papua** — Geography, biodiversity, and the natural environment
+- **Papua Kontemporer** — Current social, economic, and political developments
+- **Tokoh Papua** — Profiles of notable figures from Papua
+- **Sumber Bacaan** — Books, articles, and links for further reading
+- **Cara Berkontribusi** — How to add or improve content on the site
 
-- **Jejak Sejarah**: Informasi tentang sejarah Papua dari masa pra-kolonial hingga modern
-- **Keragaman Budaya**: Pengenalan terhadap suku-suku, bahasa, dan tradisi masyarakat Papua
-- **Alam Papua**: Informasi tentang geografi, keanekaragaman hayati, dan lingkungan alam Papua
-- **Papua Kontemporer**: Konteks dan situasi Papua saat ini
-- **Sumber Bacaan**: Rekomendasi buku, artikel, dan tautan berguna
-- **Tokoh Papua**: Profil tokoh-tokoh penting dari Papua
-- **FAQ, Glosarium, dan Galeri**: Fitur tambahan untuk memperkaya pengalaman belajar
-
-## 🚀 Mulai Cepat
+## Getting started
 
 ```bash
-# Clone repositori
-git clone https://github.com/papua-opensource/belajartentangpapua.git
-
-# Masuk ke direktori
-cd belajartentangpapua
-
-# Instal dependensi
+git clone https://github.com/papuaopensource/papuachronicles.git
+cd papuachronicles
 pnpm install
-
-# Jalankan server pengembangan
 pnpm dev
 ```
 
-Buka [http://localhost:4321](http://localhost:4321) di browser Anda.
+Open [http://localhost:4321](http://localhost:4321) in your browser.
 
-## 🔧 Teknologi
+## Tech stack
 
-Proyek ini dibangun menggunakan:
+- [Astro 6](https://astro.build/) — static site framework
+- [Tailwind CSS v4](https://tailwindcss.com) — utility-first CSS
+- [React 19](https://react.dev/) — for interactive components
+- [Lucide React](https://lucide.dev/) — icons
 
-- [Astro](https://astro.build/) - Framework web untuk website berbasis konten
-- [Tailwind CSS](https://tailwindcss.com) - Framework CSS berbasis utility
-- [shadcn/ui](https://ui.shadcn.com/) - Komponen UI yang dapat digunakan ulang
+## Contributing
 
-## 🤝 Kontribusi
+Content additions, corrections, and translations are all welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-Kami sangat menghargai kontribusi dari komunitas! Lihat [CONTRIBUTING.md](CONTRIBUTING.md) untuk panduan cara berkontribusi.
+## License
 
-## 📄 Lisensi
+MIT — see [LICENSE](LICENSE).
 
-Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail.
+## Contact
 
-## 📞 Kontak
-
-- 📧 Email: info@belajartentangpapua.web.id
-- 🌐 Website: [belajartentangpapua.web.id](https://belajartentangpapua.web.id)
-- 💬 GitHub Discussions: [Diskusi](https://github.com/papua-opensource/belajartentangpapua/discussions)
-
-## 🙏 Ucapan Terima Kasih
-
-Kami mengucapkan terima kasih kepada semua kontributor yang telah membantu mengembangkan situs ini.
+- Website: [papuachronicles.com](https://papuachronicles.com)
+- Email: info@papuachronicles.com
+- Discussions: [github.com/papuaopensource/papuachronicles/discussions](https://github.com/papuaopensource/papuachronicles/discussions)
