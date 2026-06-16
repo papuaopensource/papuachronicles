@@ -1,11 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import Logo from "@/assets/images/papua-land.png";
-
 import MainLayout from "@/layouts/MainLayout.astro";
-import Link from "@/components/Link.astro";
+import TopicCard from "@/components/TopicCard.astro";
 
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  HelpCircle,
+  BookOpen,
+  Image as ImageIcon,
+  Landmark,
+  Map,
+  Languages,
+  Palette,
+  Mountain,
+  Newspaper,
+  Award,
+  Library,
+  GitPullRequest,
+} from "lucide-react";
 
 const menuList = [
   {
@@ -13,149 +24,148 @@ const menuList = [
     description:
       "Pertanyaan yang sering diajukan tentang Papua dan jawabannya.",
     link: "/faq/",
+    icon: HelpCircle,
   },
   {
     title: "Glosarium",
     description: "Kumpulan istilah penting terkait Papua dan penjelasannya.",
     link: "/glosarium/",
+    icon: BookOpen,
   },
   {
     title: "Galeri",
     description:
       "Koleksi foto yang menampilkan keindahan alam dan budaya Papua.",
     link: "/galeri/",
+    icon: ImageIcon,
   },
   {
     title: "Jejak Sejarah",
     description:
-      "Pengantar ringkas tentang sejarah Papua dan peristiwa-peristiwa penting yang membentuknya hingga saat ini.",
+      "Sejarah Papua dan peristiwa penting yang membentuknya hingga kini.",
     link: "/sejarah/",
+    icon: Landmark,
   },
   {
-    title: "Keragaman Budaya",
+    title: "Wilayah Adat",
+    description: "Tujuh wilayah adat di Tanah Papua dan suku-suku penghuninya.",
+    link: "/wilayah-adat/",
+    icon: Map,
+  },
+  {
+    title: "Bahasa Daerah",
     description:
-      "Gambaran umum tentang suku-suku, bahasa, dan tradisi masyarakat Papua.",
-    link: "/budaya/",
+      "Ratusan bahasa daerah yang hidup di Tanah Papua dan persebarannya.",
+    link: "/bahasa/",
+    icon: Languages,
+  },
+  {
+    title: "Seni & Kerajinan",
+    description:
+      "Ukiran Asmat, noken, lukisan kulit kayu, dan karya seni khas Papua.",
+    link: "/seni/",
+    icon: Palette,
   },
   {
     title: "Alam Papua",
-    description:
-      "Pengenalan terhadap geografi, keanekaragaman hayati, dan lingkungan alam Papua.",
+    description: "Geografi, keanekaragaman hayati, dan lingkungan alam Papua.",
     link: "/alam/",
+    icon: Mountain,
   },
   {
     title: "Papua Kontemporer",
     description:
-      "Konteks dan situasi Papua saat ini, termasuk perkembangan sosial, ekonomi, dan politik terkini.",
+      "Situasi Papua saat ini: perkembangan sosial, ekonomi, dan politik terkini.",
     link: "/kontemporer/",
+    icon: Newspaper,
   },
   {
     title: "Tokoh Papua",
-    description:
-      "Profil tokoh-tokoh penting dari Papua yang berkontribusi dalam berbagai bidang.",
+    description: "Profil tokoh-tokoh penting dari Papua di berbagai bidang.",
     link: "/tokoh/",
+    icon: Award,
   },
   {
     title: "Sumber Bacaan",
     description:
-      "Rekomendasi buku, artikel, dan tautan berguna untuk mempelajari Papua lebih lanjut.",
+      "Buku, artikel, dan tautan untuk mempelajari Papua lebih lanjut.",
     link: "/bacaan/",
+    icon: Library,
   },
   {
     title: "Cara Berkontribusi",
-    description:
-      "Informasi tentang cara ikut menambah atau memperbaiki konten di situs ini.",
+    description: "Cara ikut menambah atau memperbaiki konten di situs ini.",
     link: "/kontribusi/",
+    icon: GitPullRequest,
   },
 ];
+
+const featured = menuList.slice(0, 2); // FAQ, Glosarium
+const middle = menuList.slice(2, -1); // topik utama
+const contribute = menuList[menuList.length - 1]; // Cara Berkontribusi
+
+// Lebar kartu agar baris terakhir yang tidak penuh tetap rata tengah
+const middleCardWidth =
+  "w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]";
 ---
 
-<MainLayout title="Home" description="Welcome to the Astro Starter Kit">
-  <main
-    class="flex flex-col items-center justify-center text-center mb-16 relative"
-  >
-    <div class="grid place-content-center bg-white px-4">
-      <div class="text-center">
-        <Image
-          src={Logo}
-          class="mx-auto h-56 w-auto text-black sm:h-64"
-          alt="Logo Belajar Tentang Papua"
-        />
-        <h1 class="block text-gray-700 font-bold font-poppins text-4xl -mt-36">
-          <span class="relative px-1">
-            <div
-              class="absolute inset-x-0 bottom-0 h-2 transform -skew-x-12 bg-gray-300/50"
-            >
-            </div>
-            <span class="relative inline-block">Belajar</span>
-          </span> Tentang Papua
-        </h1>
-      </div>
+<MainLayout
+  title="Beranda"
+  description="Kumpulan informasi terbuka tentang Papua — sejarah, budaya, alam, dan kehidupan masyarakatnya."
+>
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-4 pt-28 pb-20">
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
+      Jelajahi sejarah, budaya, dan alam Papua
+    </h1>
+
+    <div class="w-16 h-px bg-border my-8"></div>
+
+    <p class="text-lg text-muted max-w-xl leading-relaxed">
+      Papua Chronicles adalah kumpulan informasi terbuka tentang Papua, dibuat
+      dan dirawat bersama oleh komunitas Papua Open Source.
+    </p>
+
+    <div
+      class="flex flex-wrap items-center gap-x-5 gap-y-3 mt-10"
+    >
+      <a
+        href="#topik"
+        class="bg-fg text-bg px-5 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+      >
+        Mulai jelajahi
+      </a>
+      <a
+        href="https://github.com/papuaopensource/papuachronicles"
+        target="_blank"
+        rel="noreferrer"
+        class="text-sm text-muted hover:text-fg transition-colors inline-flex items-center gap-1"
+      >
+        Berkontribusi di GitHub
+        <ArrowUpRight className="h-4 w-4" />
+      </a>
     </div>
-    <div class="max-w-screen-lg px-0 sm:px-6 pb-10 pt-36 mx-auto">
-      <div class="text-center border-2 border-dashed border-gray-400 p-4">
-        <p class="mx-auto text-gray-500">
-          "Kumpulan informasi sederhana tentang Papua. Dibuat secara kolaboratif
-          dan bersifat open source."
-        </p>
+  </section>
+
+  <!-- Topic grid -->
+  <section id="topik" class="max-w-5xl mx-auto px-4 pb-28 scroll-mt-12">
+    <p class="text-xs font-medium uppercase tracking-widest text-muted mb-4">
+      Jelajahi Topik
+    </p>
+
+    <div class="space-y-4">
+      <!-- Baris 1: FAQ + Glosarium (2 kolom) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {featured.map((menu) => <TopicCard {...menu} />)}
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl my-10">
-        {
-          menuList.slice(0, 3).map((menu) => (
-            <Link
-              href={menu.link}
-              class="border rounded-md p-6 hover:shadow-md transition-shadow group"
-            >
-              <div class="flex justify-between items-start mb-2">
-                <h2 class="text-xl font-semibold text-slate-700">
-                  {menu.title}
-                </h2>
-                <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-slate-700 transition-colors" />
-              </div>
-              <p class="text-slate-600 text-sm text-left">{menu.description}</p>
-            </Link>
-          ))
-        }
+      <!-- Topik utama (3 kolom, baris terakhir rata tengah) -->
+      <div class="flex flex-wrap justify-center gap-4">
+        {middle.map((menu) => <TopicCard {...menu} class={middleCardWidth} />)}
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        {
-          menuList.slice(3, -1).map((menu) => (
-            <Link
-              href={menu.link}
-              class="border rounded-md p-6 hover:shadow-md transition-shadow group"
-            >
-              <div class="flex justify-between items-start mb-2">
-                <h2 class="text-xl font-semibold text-slate-700">
-                  {menu.title}
-                </h2>
-                <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-slate-700 transition-colors" />
-              </div>
-              <p class="text-slate-600 text-sm text-left">{menu.description}</p>
-            </Link>
-          ))
-        }
-      </div>
-
-      <div class="grid grid-cols-1 w-full max-w-4xl mt-6">
-        {
-          menuList.slice(-1).map((menu) => (
-            <Link
-              href={menu.link}
-              class="border rounded-md p-6 hover:shadow-md transition-shadow group md:col-span-2"
-            >
-              <div class="flex justify-between items-start mb-2">
-                <h2 class="text-xl font-semibold text-slate-700">
-                  {menu.title}
-                </h2>
-                <ArrowRight className="h-5 w-5 text-slate-400 group-hover:text-slate-700 transition-colors" />
-              </div>
-              <p class="text-slate-600 text-sm text-left">{menu.description}</p>
-            </Link>
-          ))
-        }
-      </div>
+      <!-- Baris terakhir: Cara Berkontribusi (1 kolom penuh, layout horizontal) -->
+      <TopicCard {...contribute} horizontal />
     </div>
-  </main>
+  </section>
 </MainLayout>
