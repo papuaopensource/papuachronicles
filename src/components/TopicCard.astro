@@ -1,0 +1,59 @@
+---
+import { ArrowRight, type LucideIcon } from "lucide-react";
+
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  icon: LucideIcon;
+  horizontal?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  link,
+  icon: Icon,
+  horizontal = false,
+  class: className,
+} = Astro.props;
+---
+
+{
+  horizontal ? (
+    <a
+      href={link}
+      class:list={[
+        "group flex items-center gap-4 rounded-xl border border-border bg-surface p-5 hover:bg-surface-hover transition-colors",
+        className,
+      ]}
+    >
+      <div class="h-10 w-10 shrink-0 rounded-lg border border-border flex items-center justify-center group-hover:border-fg/30 transition-colors">
+        <Icon className="h-4.5 w-4.5 text-muted group-hover:text-fg transition-colors" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <h2 class="font-medium leading-snug">{title}</h2>
+        <p class="text-sm text-muted leading-relaxed mt-0.5">{description}</p>
+      </div>
+      <ArrowRight className="h-4 w-4 shrink-0 text-muted -translate-x-1 group-hover:translate-x-0 group-hover:text-fg transition-all" />
+    </a>
+  ) : (
+    <a
+      href={link}
+      class:list={[
+        "group block rounded-xl border border-border bg-surface p-5 hover:bg-surface-hover transition-colors",
+        className,
+      ]}
+    >
+      <div class="flex items-center justify-between mb-4">
+        <div class="h-10 w-10 rounded-lg border border-border flex items-center justify-center group-hover:border-fg/30 transition-colors">
+          <Icon className="h-4.5 w-4.5 text-muted group-hover:text-fg transition-colors" />
+        </div>
+        <ArrowRight className="h-4 w-4 text-muted opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+      </div>
+      <h2 class="font-medium leading-snug mb-1.5">{title}</h2>
+      <p class="text-sm text-muted leading-relaxed">{description}</p>
+    </a>
+  )
+}
