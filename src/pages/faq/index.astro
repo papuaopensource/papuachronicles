@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import { HelpCircle } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+import FAQEntry from "@/components/FAQEntry.astro";
+
+const entries = (await getCollection("faq")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
+);
+---
+
+<TopicLayout
+  title="FAQ"
+  description="Pertanyaan yang sering diajukan tentang Papua dan jawabannya."
+  icon={HelpCircle}
+>
+  <div class="divide-y divide-border">
+    {entries.map((entry) => <FAQEntry entry={entry} />)}
+  </div>
+
+  <p class="mt-10 text-sm text-muted">
+    Ada pertanyaan yang belum terjawab?{" "}
+    <a
+      href="https://github.com/papuaopensource/papuachronicles/discussions"
+      target="_blank"
+      rel="noreferrer"
+      class="text-fg underline underline-offset-4 hover:no-underline"
+    >
+      Tanya di GitHub Discussions
+    </a>
+  </p>
+</TopicLayout>
