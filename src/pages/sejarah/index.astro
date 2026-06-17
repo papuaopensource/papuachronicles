@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from "astro:content";
+import { Landmark } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+import DaftarPustaka from "@/components/DaftarPustaka.astro";
+
+const events = (await getCollection("sejarah")).sort(
+  (a, b) => a.data.year - b.data.year,
+);
+
+const rendered = await Promise.all(events.map((e) => render(e)));
+---
+
+<TopicLayout
+  title="Jejak Sejarah"
+  description="Peristiwa-peristiwa penting yang membentuk Papua dari masa pra-kolonial hingga hari ini."
+  icon={Landmark}
+>
+  <div class="relative">
+    <!-- Vertical line -->
+    <div
+      class="absolute left-[4.5rem] top-0 bottom-0 w-px bg-border hidden sm:block"
+    >
+    </div>
+
+    <div class="space-y-0">
+      {
+        events.map((event, i) => {
+          const { Content } = rendered[i];
+          const refs = event.data.references ?? [];
+          return (
+            <div class="group relative sm:pl-32 pb-12 last:pb-0">
+              <!-- Year marker -->
+              <div class="sm:absolute sm:left-0 sm:top-0 mb-3 sm:mb-0 flex sm:flex-col items-center sm:items-end gap-3 sm:gap-1">
+                <span class="text-sm font-mono font-semibold text-fg sm:w-16 sm:text-right">
+                  {event.data.year}
+                </span>
+                <span class="sm:hidden h-px flex-1 bg-border" />
+                {event.data.period && (
+                  <span class="text-xs text-muted hidden sm:block sm:w-16 sm:text-right">
+                    {event.data.period}
+                  </span>
+                )}
+              </div>
+
+              <!-- Dot on the line -->
+              <div class="absolute left-[4.25rem] top-1 w-2 h-2 rounded-full bg-fg border-2 border-bg hidden sm:block" />
+
+              <!-- Content card -->
+              <div class="bg-surface border border-border rounded-xl p-5 sm:p-6">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <h2 class="font-semibold text-fg leading-snug">
+                    {event.data.title}
+                  </h2>
+                  {event.data.period && (
+                    <span class="text-xs text-muted border border-border rounded-full px-2 py-0.5 shrink-0 hidden sm:inline-block">
+                      {event.data.period}
+                    </span>
+                  )}
+                </div>
+                <div class="prose dark:prose-invert max-w-none text-sm leading-relaxed">
+                  <Content />
+                </div>
+                {refs.length > 0 && (
+                  <div class="mt-5 pt-5 border-t border-border">
+                    <DaftarPustaka references={refs} />
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</TopicLayout>
