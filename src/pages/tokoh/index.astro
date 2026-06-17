@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import { Award, ArrowRight } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+
+const tokohList = (await getCollection("tokoh")).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name, "id")
+);
+---
+
+<TopicLayout
+  title="Tokoh Papua"
+  description="Profil tokoh-tokoh penting dari Papua di berbagai bidang."
+  icon={Award}
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      tokohList.map((tokoh) => (
+        <a
+          href={`/tokoh/${tokoh.id}/`}
+          class="group block p-5 rounded-xl border border-border bg-surface hover:bg-surface-hover transition-colors"
+        >
+          <div class="flex items-start justify-between gap-2 mb-3">
+            <div class="w-10 h-10 rounded-full bg-bg border border-border flex items-center justify-center text-sm font-bold text-fg shrink-0">
+              {tokoh.data.name
+                .split(" ")
+                .slice(0, 2)
+                .map((n: string) => n[0])
+                .join("")}
+            </div>
+            <ArrowRight className="h-4 w-4 text-muted group-hover:text-fg group-hover:translate-x-0.5 transition-all mt-1 shrink-0" />
+          </div>
+          <p class="font-semibold text-fg leading-snug mb-1">{tokoh.data.name}</p>
+          <p class="text-sm text-muted leading-snug mb-2">{tokoh.data.role}</p>
+          <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">
+            {tokoh.data.region && <span>{tokoh.data.region}</span>}
+            {tokoh.data.period && <span>{tokoh.data.period}</span>}
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <p class="mt-10 text-sm text-muted">
+    Ada tokoh Papua yang belum tercantum?{" "}
+    <a
+      href="https://github.com/papuaopensource/papuachronicles"
+      target="_blank"
+      rel="noreferrer"
+      class="text-fg underline underline-offset-4 hover:no-underline"
+    >
+      Tambahkan lewat GitHub
+    </a>
+  </p>
+</TopicLayout>

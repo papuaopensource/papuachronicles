@@ -1,0 +1,84 @@
+---
+import { getCollection, render } from "astro:content";
+import { ArrowLeft } from "lucide-react";
+import MainLayout from "@/layouts/MainLayout.astro";
+import Link from "@/components/Link.astro";
+import DaftarPustaka from "@/components/DaftarPustaka.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("tokoh");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<MainLayout
+  title={entry.data.name}
+  description={`${entry.data.role} — ${entry.data.region ?? "Papua"}`}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Link
+      href="/tokoh/"
+      class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors mb-12"
+    >
+      <ArrowLeft className="h-4 w-4" />
+      Tokoh Papua
+    </Link>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-4 mb-6">
+        <div
+          class="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-lg font-bold text-fg shrink-0 select-none"
+        >
+          {
+            entry.data.name
+              .split(" ")
+              .slice(0, 2)
+              .map((n: string) => n[0])
+              .join("")
+          }
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-fg tracking-tight">
+            {entry.data.name}
+          </h1>
+          <p class="text-muted mt-0.5">{entry.data.role}</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        {
+          entry.data.region && (
+            <span class="text-xs border border-border rounded-full px-3 py-1 text-muted">
+              {entry.data.region}
+            </span>
+          )
+        }
+        {
+          entry.data.period && (
+            <span class="text-xs border border-border rounded-full px-3 py-1 text-muted">
+              {entry.data.period}
+            </span>
+          )
+        }
+      </div>
+
+      <div class="w-16 h-px bg-border mt-8"></div>
+    </header>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <Content />
+    </div>
+
+    {
+      entry.data.references && entry.data.references.length > 0 && (
+        <DaftarPustaka references={entry.data.references} />
+      )
+    }
+  </div>
+</MainLayout>
