@@ -1,0 +1,57 @@
+---
+interface Reference {
+  id: number;
+  author: string;
+  title: string;
+  publisher?: string;
+  year?: number;
+  url?: string;
+  type?: "book" | "article" | "journal" | "report" | "document" | "website";
+}
+
+interface Props {
+  references: Reference[];
+}
+
+const { references } = Astro.props;
+const sorted = [...references].sort((a, b) => a.id - b.id);
+---
+
+<section class="mt-14 pt-8 border-t border-border">
+  <h2
+    class="text-xs font-semibold uppercase tracking-widest text-muted mb-6"
+  >
+    Daftar Pustaka
+  </h2>
+  <ol class="space-y-4 list-none">
+    {
+      sorted.map((ref) => (
+        <li class="flex gap-4 text-sm leading-relaxed">
+          <span class="font-mono text-xs text-muted pt-0.5 shrink-0 w-6 text-right">
+            [{ref.id}]
+          </span>
+          <span class="text-muted">
+            {ref.author}.{" "}
+            {ref.year && <span>({ref.year}). </span>}
+            {ref.type === "book" || ref.type === "report" ? (
+              <em class="text-fg not-italic font-medium">{ref.title}</em>
+            ) : (
+              <span class="text-fg font-medium">"{ref.title}"</span>
+            )}
+            {ref.publisher && <span>. {ref.publisher}</span>}.
+            {ref.url && (
+              <a
+                href={ref.url}
+                target="_blank"
+                rel="noreferrer"
+                class="ml-1 text-muted underline underline-offset-2 hover:text-fg transition-colors break-all"
+              >
+                Akses sumber
+              </a>
+            )}
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+</section>
