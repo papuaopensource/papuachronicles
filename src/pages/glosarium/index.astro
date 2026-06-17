@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from "astro:content";
+import { BookOpen } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+
+const allEntries = await getCollection("glosarium");
+const sorted = allEntries.sort((a, b) =>
+  a.data.term.localeCompare(b.data.term, "id")
+);
+
+// Group by first letter
+const grouped = sorted.reduce<Record<string, typeof sorted>>((acc, entry) => {
+  const letter = entry.data.term[0].toUpperCase();
+  if (!acc[letter]) acc[letter] = [];
+  acc[letter].push(entry);
+  return acc;
+}, {});
+
+const letters = Object.keys(grouped).sort();
+
+// Pre-render all entries
+const rendered = await Promise.all(sorted.map((e) => render(e)));
+const renderMap = Object.fromEntries(
+  sorted.map((e, i) => [e.id, rendered[i].Content])
+);
+---
+
+<TopicLayout
+  title="Glosarium"
+  description="Kumpulan istilah penting terkait Papua dan penjelasannya."
+  icon={BookOpen}
+>
+  <!-- Letter jump nav -->
+  <nav class="flex flex-wrap gap-2 mb-10">
+    {
+      letters.map((l) => (
+        <a
+          href={`#huruf-${l}`}
+          class="w-8 h-8 flex items-center justify-center rounded-md border border-border text-sm font-medium text-muted hover:text-fg hover:bg-surface-hover transition-colors"
+        >
+          {l}
+        </a>
+      ))
+    }
+  </nav>
+
+  <!-- Entries grouped by letter -->
+  <div class="space-y-10">
+    {
+      letters.map((letter) => (
+        <section id={`huruf-${letter}`} class="scroll-mt-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-xs font-semibold tracking-widest text-muted uppercase">
+              {letter}
+            </span>
+            <div class="flex-1 h-px bg-border" />
+          </div>
+          <dl class="space-y-6">
+            {grouped[letter].map((entry) => {
+              const Content = renderMap[entry.id];
+              return (
+                <div id={entry.id}>
+                  <dt class="font-semibold text-fg mb-1">
+                    {entry.data.term}
+                    {entry.data.category && (
+                      <span class="ml-2 text-xs font-normal text-muted border border-border rounded-full px-2 py-0.5">
+                        {entry.data.category}
+                      </span>
+                    )}
+                  </dt>
+                  <dd class="prose dark:prose-invert max-w-none text-muted">
+                    <Content />
+                    {entry.data.source && (
+                      <p class="not-prose mt-2 text-xs text-muted border-l-2 border-border pl-3 italic">
+                        Sumber: {entry.data.source}
+                      </p>
+                    )}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+        </section>
+      ))
+    }
+  </div>
+
+  <p class="mt-12 text-sm text-muted">
+    Istilah belum ada di sini?{" "}
+    <a
+      href="https://github.com/papuaopensource/papuachronicles"
+      target="_blank"
+      rel="noreferrer"
+      class="text-fg underline underline-offset-4 hover:no-underline"
+    >
+      Tambahkan lewat GitHub
+    </a>
+  </p>
+</TopicLayout>
