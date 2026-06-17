@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from "astro:content";
+import { ArrowLeft } from "lucide-react";
+import MainLayout from "@/layouts/MainLayout.astro";
+import Link from "@/components/Link.astro";
+import DaftarPustaka from "@/components/DaftarPustaka.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("wilayah");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<MainLayout
+  title={entry.data.name}
+  description={entry.data.description}
+>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <Link
+      href="/wilayah-adat/"
+      class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors mb-12"
+    >
+      <ArrowLeft className="h-4 w-4" />
+      Wilayah Adat
+    </Link>
+
+    <header class="mb-12">
+      <p class="text-xs font-medium uppercase tracking-widest text-muted mb-3">
+        Wilayah Adat {String(entry.data.order ?? "").padStart(2, "0")}
+      </p>
+      <h1 class="text-4xl sm:text-5xl font-bold text-fg tracking-tight mb-4">
+        {entry.data.name}
+      </h1>
+      <p class="text-lg text-muted leading-relaxed max-w-2xl mb-8">
+        {entry.data.description}
+      </p>
+
+      <div class="w-16 h-px bg-border"></div>
+    </header>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <Content />
+    </div>
+
+    {
+      entry.data.references && entry.data.references.length > 0 && (
+        <DaftarPustaka references={entry.data.references} />
+      )
+    }
+  </div>
+</MainLayout>

@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import { Map, ArrowRight } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+
+const regions = (await getCollection("wilayah")).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
+);
+---
+
+<TopicLayout
+  title="Wilayah Adat"
+  description="Tujuh wilayah adat di Tanah Papua dan suku-suku penghuninya."
+  icon={Map}
+>
+  <div class="border-t border-border">
+    {
+      regions.map((region) => (
+        <a
+          href={`/wilayah-adat/${region.id}/`}
+          class="group flex items-center gap-6 sm:gap-10 py-5 border-b border-border hover:bg-surface-hover -mx-4 px-4 transition-colors"
+        >
+          <span class="text-2xl font-mono font-bold text-border group-hover:text-muted transition-colors shrink-0 w-8 text-right select-none">
+            {String(region.data.order ?? "").padStart(2, "0")}
+          </span>
+
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-fg group-hover:text-fg leading-snug">
+              {region.data.name}
+            </p>
+            <p class="text-sm text-muted mt-0.5">{region.data.description}</p>
+          </div>
+
+          <ArrowRight className="h-4 w-4 text-muted group-hover:text-fg group-hover:translate-x-0.5 transition-all shrink-0" />
+        </a>
+      ))
+    }
+  </div>
+</TopicLayout>
