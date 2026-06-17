@@ -1,0 +1,164 @@
+---
+import { GitPullRequest, FileText, MessageSquare, GitFork } from "lucide-react";
+import TopicLayout from "@/layouts/TopicLayout.astro";
+---
+
+<TopicLayout
+  title="Cara Berkontribusi"
+  description="Cara ikut menambah atau memperbaiki konten di situs ini."
+  icon={GitPullRequest}
+>
+  <div class="space-y-10 max-w-5xl mx-auto">
+    <p class="text-muted leading-relaxed">
+      Papua Chronicles adalah proyek terbuka. Siapa saja bisa ikut berkontribusi
+      — tidak perlu jadi ahli, cukup punya niat baik dan mau teliti. Semua
+      konten dikelola melalui GitHub dan tersedia di bawah lisensi MIT.
+    </p>
+
+    <!-- Steps -->
+    <div class="space-y-6">
+      <div class="flex gap-4">
+        <div
+          class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <GitFork className="h-4 w-4 text-fg" />
+        </div>
+        <div>
+          <h2 class="font-semibold text-fg mb-1">1. Fork repositori</h2>
+          <p class="text-sm text-muted leading-relaxed">
+            Buka repositori di{" "}
+            <a
+              href="https://github.com/papuaopensource/papuachronicles"
+              target="_blank"
+              rel="noreferrer"
+              class="text-fg underline underline-offset-2 hover:no-underline"
+            >
+              github.com/papuaopensource/papuachronicles
+            </a>{" "}
+            lalu klik <strong>Fork</strong> untuk membuat salinan di akun GitHub kamu.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div
+          class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <FileText className="h-4 w-4 text-fg" />
+        </div>
+        <div>
+          <h2 class="font-semibold text-fg mb-1">2. Tambah atau ubah konten</h2>
+          <p class="text-sm text-muted leading-relaxed mb-3">
+            Semua konten berada di folder <code
+              class="text-xs bg-surface border border-border rounded px-1.5 py-0.5 text-fg"
+              >src/content/</code
+            >. Setiap topik adalah folder tersendiri berisi file Markdown.
+          </p>
+          <div
+            class="bg-surface border border-border rounded-lg p-4 text-xs font-mono text-muted space-y-1"
+          >
+            <p>src/content/</p>
+            <p class="pl-4">
+              faq/ <span class="text-muted/60">← tanya jawab</span>
+            </p>
+            <p class="pl-4">
+              glosarium/ <span class="text-muted/60">← istilah</span>
+            </p>
+            <p class="pl-4">
+              tokoh/ <span class="text-muted/60">← profil tokoh</span>
+            </p>
+            <p class="pl-4">
+              sejarah/ <span class="text-muted/60">← peristiwa bersejarah</span>
+            </p>
+            <p class="pl-4">
+              wilayah/ <span class="text-muted/60">← wilayah adat</span>
+            </p>
+          </div>
+          <p class="text-sm text-muted leading-relaxed mt-3">
+            Setiap file dimulai dengan frontmatter YAML (judul, tahun, dll)
+            diikuti konten Markdown. Lihat file yang sudah ada sebagai contoh
+            format yang diharapkan.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div
+          class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <GitPullRequest className="h-4 w-4 text-fg" />
+        </div>
+        <div>
+          <h2 class="font-semibold text-fg mb-1">3. Buat pull request</h2>
+          <p class="text-sm text-muted leading-relaxed">
+            Setelah selesai mengedit, commit perubahan kamu dan buat pull
+            request ke repositori utama. Tim akan meninjau dan memberi masukan
+            jika ada yang perlu disesuaikan.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div
+          class="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <MessageSquare className="h-4 w-4 text-fg" />
+        </div>
+        <div>
+          <h2 class="font-semibold text-fg mb-1">
+            Punya ide tapi tidak tahu cara mulai?
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            Buka diskusi di{" "}
+            <a
+              href="https://github.com/papuaopensource/papuachronicles/discussions"
+              target="_blank"
+              rel="noreferrer"
+              class="text-fg underline underline-offset-2 hover:no-underline"
+            >
+              GitHub Discussions
+            </a>{" "}
+            atau ajukan issue baru. Kamu juga bisa bertanya tentang topik yang ingin
+            kamu tambahkan sebelum mulai menulis.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panduan konten -->
+    <div class="border-t border-border pt-8">
+      <h2 class="font-semibold text-fg mb-4">Panduan penulisan konten</h2>
+      <ul class="space-y-2 text-sm text-muted">
+        <li class="flex gap-2">
+          <span class="text-fg shrink-0">—</span>
+          <span
+            >Tulis dalam bahasa Indonesia yang lugas. Hindari kalimat berlebihan
+            dan frasa yang terkesan seperti hasil terjemahan mesin.</span
+          >
+        </li>
+        <li class="flex gap-2">
+          <span class="text-fg shrink-0">—</span>
+          <span
+            >Setiap klaim faktual harus disertai sumber. Tambahkan daftar
+            pustaka di frontmatter menggunakan format yang tersedia.</span
+          >
+        </li>
+        <li class="flex gap-2">
+          <span class="text-fg shrink-0">—</span>
+          <span
+            >Gunakan sumber primer atau akademik jika tersedia — buku, jurnal,
+            dokumen resmi, laporan lembaga terpercaya.</span
+          >
+        </li>
+        <li class="flex gap-2">
+          <span class="text-fg shrink-0">—</span>
+          <span
+            >Jika topik yang kamu tulis bersifat kontroversial atau sensitif,
+            sajikan berbagai perspektif secara berimbang dan sertakan sumber
+            dari tiap sudut pandang.</span
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</TopicLayout>
