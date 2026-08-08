@@ -10,7 +10,7 @@ const { title, description } = Astro.props as Props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <script is:inline>
-  const theme = localStorage.getItem("theme") ?? "dark";
+  const theme = localStorage.getItem("theme") ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.classList.toggle("dark", theme === "dark");
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -23,4 +23,5 @@ const { title, description } = Astro.props as Props;
 <meta name="generator" content={Astro.generator} />
 <meta name="description" content={description} />
 <meta name="author" content="Papua Open Source" />
+<meta name="theme-color" content="#b74624" />
 <title>{title} — Papua Chronicles</title>

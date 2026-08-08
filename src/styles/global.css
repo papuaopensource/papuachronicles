@@ -4,21 +4,23 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg: #ffffff;
-  --surface: #fafafa;
-  --surface-hover: #f4f4f5;
-  --fg: #0a0a0a;
-  --fg-muted: #525252;
-  --border: #e5e5e5;
+  --bg: #fffdf9;
+  --surface: #f7f3eb;
+  --surface-hover: #eee8dd;
+  --fg: #201d19;
+  --fg-muted: #696157;
+  --border: #ded7cc;
+  --brand: #b74624;
 }
 
 .dark {
-  --bg: #0a0a0a;
-  --surface: #161616;
-  --surface-hover: #1f1f1f;
-  --fg: #fafafa;
-  --fg-muted: #a1a1a1;
-  --border: #262626;
+  --bg: #171512;
+  --surface: #211e1a;
+  --surface-hover: #2b2722;
+  --fg: #fffaf1;
+  --fg-muted: #b8afa3;
+  --border: #3a352e;
+  --brand: #e16a42;
 }
 
 @theme inline {
@@ -28,6 +30,7 @@
   --color-fg: var(--fg);
   --color-muted: var(--fg-muted);
   --color-border: var(--border);
+  --color-brand: var(--brand);
   --font-sans: 'Inter', sans-serif;
 }
 
@@ -35,4 +38,22 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg);
   color: var(--fg);
+}
+
+::selection { background: color-mix(in srgb, var(--brand) 28%, transparent); }
+
+:where(a, button, summary):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand) 55%, transparent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed; left: 1rem; top: 0; z-index: 100; transform: translateY(-150%);
+  border-radius: .5rem; background: var(--fg); color: var(--bg); padding: .65rem 1rem;
+  font-size: .875rem; font-weight: 600; transition: transform .15s;
+}
+.skip-link:focus { transform: translateY(1rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

@@ -5,7 +5,7 @@ import { Sun, Moon } from "lucide-react";
 
 <footer class="border-t border-border mt-auto">
   <div
-    class="max-w-5xl mx-auto flex flex-col sm:flex-row sm:justify-between items-center gap-6 px-4 py-10"
+    class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:justify-between items-center gap-6 px-4 sm:px-6 py-10"
   >
     <p class="text-sm text-muted">&copy; 2026 Papua Open Source</p>
 
@@ -40,6 +40,7 @@ import { Sun, Moon } from "lucide-react";
         <button
           type="button"
           data-theme-set="light"
+          aria-label="Gunakan tema terang" aria-pressed="false"
           class="theme-opt flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-muted transition-colors cursor-pointer"
         >
           <Sun className="h-3.5 w-3.5" />
@@ -48,7 +49,8 @@ import { Sun, Moon } from "lucide-react";
         <button
           type="button"
           data-theme-set="dark"
-          class="theme-opt flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs bg-surface-hover text-fg transition-colors cursor-pointer"
+          aria-label="Gunakan tema gelap" aria-pressed="false"
+          class="theme-opt flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs text-muted transition-colors cursor-pointer"
         >
           <Moon className="h-3.5 w-3.5" />
           Gelap

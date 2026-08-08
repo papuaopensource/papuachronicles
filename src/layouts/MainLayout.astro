@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
 interface Props {
@@ -17,7 +18,9 @@ const { title, description } = Astro.props as Props;
   </head>
 
   <body class="min-h-screen flex flex-col bg-bg text-fg antialiased">
-    <main class="flex-1 w-full">
+    <a href="#main-content" class="skip-link">Langsung ke konten</a>
+    <Header />
+    <main id="main-content" class="flex-1 w-full" tabindex="-1">
       <slot />
     </main>
     <Footer />
@@ -29,9 +32,10 @@ const { title, description } = Astro.props as Props;
         const isDark = document.documentElement.classList.contains("dark");
         options.forEach((btn) => {
           const active = btn.dataset.themeSet === (isDark ? "dark" : "light");
-          btn.classList.toggle("bg-surface-hover", active);
-          btn.classList.toggle("text-fg", active);
+          btn.classList.toggle("bg-fg", active);
+          btn.classList.toggle("text-bg", active);
           btn.classList.toggle("text-muted", !active);
+          btn.setAttribute("aria-pressed", String(active));
         });
       }
 

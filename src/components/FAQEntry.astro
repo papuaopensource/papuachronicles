@@ -10,16 +10,16 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<details class="group border-b border-border py-5 last:border-b-0">
+<details class="group border-b border-border py-5 last:border-b-0 open:pb-7">
   <summary
-    class="flex items-center justify-between gap-4 cursor-pointer list-none font-medium text-fg"
+    class="flex items-center justify-between gap-4 cursor-pointer list-none rounded-md font-medium text-fg transition-colors hover:text-brand"
   >
     <span>{entry.data.question}</span>
     <ChevronDown
       className="h-4 w-4 text-muted shrink-0 transition-transform duration-200 group-open:rotate-180"
     />
   </summary>
-  <div class="mt-4 prose dark:prose-invert max-w-none text-muted">
+  <div class="mt-4 max-w-3xl prose dark:prose-invert text-muted">
     <Content />
   </div>
 </details>

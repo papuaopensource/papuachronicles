@@ -14,26 +14,24 @@ const { title, description, icon: Icon, pageTitle } = Astro.props;
 ---
 
 <MainLayout title={pageTitle ?? title} description={description}>
-  <div class="max-w-5xl mx-auto px-4 py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
     <Link
       href="/"
-      class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors mb-12"
+      class="inline-flex items-center gap-2 rounded-md text-sm text-muted hover:text-fg transition-colors mb-10"
     >
       <ArrowLeft className="h-4 w-4" />
       Kembali ke Beranda
     </Link>
 
-    <header class="mb-10">
+    <header class="mb-10 max-w-3xl">
       <div class="flex items-center gap-3 mb-4">
-        <div class="p-2.5 rounded-lg bg-surface border border-border shrink-0">
-          <Icon className="h-5 w-5 text-fg" />
-        </div>
+        <Icon className="h-6 w-6 shrink-0 text-brand" />
         <h1 class="text-3xl sm:text-4xl font-bold text-fg tracking-tight">
           {title}
         </h1>
       </div>
       <p class="text-muted text-lg leading-relaxed max-w-2xl">{description}</p>
-      <div class="w-16 h-px bg-border mt-8"></div>
+      <div class="w-16 h-0.5 bg-brand mt-8"></div>
     </header>
 
     <slot />
