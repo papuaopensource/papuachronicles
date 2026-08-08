@@ -1,147 +1,58 @@
 ---
-import Link from "@/components/Link.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-
-import { ArrowLeft } from "lucide-react";
 ---
 
-<MainLayout
-  title="Ketentuan Layanan"
-  description="Ketentuan layanan situs Papua Chronicles."
->
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <Link
-      href="/"
-      class="inline-flex items-center text-muted hover:text-fg transition-colors mb-8"
-    >
-      <ArrowLeft className="h-4 w-4 mr-2" />
-      Kembali ke Beranda
-    </Link>
+<MainLayout title="Ketentuan Layanan" description="Ketentuan penggunaan Papua Chronicles dan kontennya.">
+  <article class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+    <header class="mb-12 max-w-3xl">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Ketentuan layanan</h1>
+      <p class="mt-4 text-sm text-muted">Terakhir diperbarui: 9 Agustus 2026</p>
+    </header>
 
-    <h1 class="text-3xl sm:text-4xl font-bold text-fg tracking-tight mb-8">
-      Ketentuan Layanan
-    </h1>
-
-    <div class="prose dark:prose-invert max-w-none">
-      <p class="text-sm text-muted mb-6">Terakhir diperbarui: 25 Maret 2024</p>
-
-      <h2>1. Pendahuluan</h2>
+    <div class="prose max-w-3xl dark:prose-invert">
       <p>
-        Selamat datang di situs "Papua Chronicles". Dengan mengakses dan
-        menggunakan situs ini, Anda menyetujui untuk terikat oleh ketentuan
-        layanan berikut. Jika Anda tidak setuju dengan ketentuan ini, mohon
-        untuk tidak menggunakan situs kami.
+        Dengan menggunakan Papua Chronicles, Anda menyetujui ketentuan berikut. Ketentuan ini dibuat untuk menjaga penggunaan dan kontribusi tetap terbuka, bertanggung jawab, dan dapat ditelusuri.
       </p>
 
-      <h2>2. Penggunaan Konten</h2>
+      <h2>Tujuan informasi</h2>
       <p>
-        Seluruh konten di situs "Papua Chronicles" tersedia di bawah lisensi
-        MIT, kecuali dinyatakan lain. Anda diperbolehkan untuk:
+        Konten disediakan sebagai bahan pengantar dan referensi umum. Kami berusaha menyertakan sumber dan memperbaiki kekeliruan, tetapi tidak menjamin setiap halaman selalu lengkap, mutakhir, atau bebas kesalahan. Periksa sumber asli sebelum memakai informasi untuk riset, publikasi, urusan hukum, kesehatan, atau keputusan penting lainnya.
       </p>
+
+      <h2>Penggunaan kode dan konten</h2>
+      <p>
+        Repositori perangkat lunak Papua Chronicles tersedia berdasarkan lisensi yang tercantum di repositori GitHub. Materi pihak ketiga—termasuk kutipan, gambar, dan sumber yang ditautkan—tetap mengikuti hak serta ketentuan pemiliknya masing-masing. Jangan menganggap seluruh materi pihak ketiga ikut dilisensikan bersama kode situs.
+      </p>
+
+      <h2>Kontribusi</h2>
+      <p>Dengan mengirim kontribusi, Anda menyatakan bahwa:</p>
       <ul>
-        <li>Membaca dan mengunduh konten untuk penggunaan pribadi</li>
-        <li>Menggunakan konten untuk tujuan pendidikan</li>
-        <li>Membagikan konten dengan atribusi yang tepat</li>
-        <li>Mengadaptasi dan memodifikasi konten dengan atribusi yang tepat</li>
-      </ul>
-      <p>Namun, Anda tidak diperbolehkan untuk:</p>
-      <ul>
-        <li>Menggunakan konten untuk tujuan komersial tanpa izin tertulis</li>
-        <li>Mendistribusikan ulang konten dalam jumlah besar tanpa atribusi</li>
-        <li>Menyajikan konten sebagai milik Anda sendiri</li>
-      </ul>
-
-      <h2>3. Akurasi Informasi</h2>
-      <p>
-        Kami berusaha untuk menyediakan informasi yang akurat dan terpercaya
-        tentang Papua. Namun, kami tidak menjamin keakuratan, kelengkapan, atau
-        kebaruan informasi yang disajikan. Informasi di situs ini disediakan
-        "sebagaimana adanya" tanpa jaminan apapun.
-      </p>
-      <p>
-        Kami mendorong pengguna untuk melakukan verifikasi informasi dari
-        berbagai sumber, terutama untuk informasi yang akan digunakan untuk
-        tujuan akademis atau profesional.
-      </p>
-
-      <h2>4. Kontribusi Pengguna</h2>
-      <p>
-        Kami menerima kontribusi dari pengguna untuk memperkaya konten situs
-        ini. Dengan mengirimkan kontribusi, Anda:
-      </p>
-      <ul>
-        <li>
-          Menjamin bahwa Anda memiliki hak untuk membagikan konten tersebut
-        </li>
-        <li>
-          Memberikan kami lisensi non-eksklusif untuk menggunakan, memodifikasi,
-          dan mendistribusikan kontribusi Anda
-        </li>
-        <li>
-          Memahami bahwa kontribusi Anda mungkin akan diedit atau tidak
-          dipublikasikan
-        </li>
+        <li>Anda berhak membagikan materi tersebut;</li>
+        <li>informasi disajikan dengan itikad baik dan sumber yang memadai;</li>
+        <li>kontribusi dapat ditinjau, disunting, ditolak, atau dihapus oleh pengelola; dan</li>
+        <li>riwayat kontribusi dapat tersimpan secara publik di GitHub.</li>
       </ul>
       <p>
-        Kami berhak untuk menghapus kontribusi yang tidak sesuai dengan standar
-        kami, termasuk konten yang:
-      </p>
-      <ul>
-        <li>Mengandung ujaran kebencian atau diskriminasi</li>
-        <li>Melanggar hak kekayaan intelektual</li>
-        <li>Berisi informasi yang tidak akurat atau menyesatkan</li>
-        <li>Mempromosikan kekerasan atau aktivitas ilegal</li>
-      </ul>
-
-      <h2>5. Tautan ke Situs Lain</h2>
-      <p>
-        Situs kami mungkin berisi tautan ke situs web pihak ketiga. Tautan ini
-        disediakan untuk kenyamanan dan informasi tambahan bagi pengguna. Kami
-        tidak memiliki kendali atas konten situs web pihak ketiga dan tidak
-        bertanggung jawab atas konten atau praktik privasi mereka.
+        Kami dapat menolak konten yang melanggar hukum atau hak pihak lain, membahayakan privasi, mengandung ujaran kebencian, sengaja menyesatkan, atau tidak memenuhi standar sumber.
       </p>
 
-      <h2>6. Batasan Tanggung Jawab</h2>
+      <h2>Tautan pihak ketiga</h2>
       <p>
-        Dalam batas maksimal yang diizinkan oleh hukum, "Papua Chronicles" dan
-        kontributornya tidak bertanggung jawab atas kerugian langsung, tidak
-        langsung, insidental, konsekuensial, atau khusus yang timbul dari
-        penggunaan atau ketidakmampuan menggunakan situs ini.
+        Tautan ke situs lain disediakan untuk membantu pembaca menemukan sumber dan konteks tambahan. Papua Chronicles tidak mengendalikan isi, ketersediaan, atau praktik privasi situs tersebut.
       </p>
 
-      <h2>7. Perubahan pada Ketentuan Layanan</h2>
+      <h2>Ketersediaan layanan</h2>
       <p>
-        Kami berhak untuk memodifikasi ketentuan layanan ini kapan saja.
-        Perubahan akan berlaku segera setelah diposting di situs. Dengan terus
-        menggunakan situs setelah perubahan tersebut, Anda menyetujui ketentuan
-        yang diperbarui.
+        Situs dapat berubah, mengalami gangguan, atau dihentikan sementara tanpa pemberitahuan. Dalam batas yang diperbolehkan hukum, pengelola dan kontributor tidak bertanggung jawab atas kerugian yang timbul karena penggunaan situs atau ketergantungan pada kontennya.
       </p>
 
-      <h2>8. Hukum yang Berlaku</h2>
+      <h2>Perubahan ketentuan</h2>
       <p>
-        Ketentuan layanan ini diatur oleh hukum Republik Indonesia. Setiap
-        sengketa yang timbul dari penggunaan situs ini akan diselesaikan melalui
-        forum yang sesuai di Indonesia.
+        Ketentuan dapat diperbarui mengikuti perubahan situs. Penggunaan setelah pembaruan berarti Anda menerima versi terbaru yang ditampilkan di halaman ini.
       </p>
 
-      <h2>9. Kontak</h2>
-      <p>
-        Jika Anda memiliki pertanyaan tentang ketentuan layanan ini, silakan
-        hubungi kami melalui:
-      </p>
-      <ul>
-        <li>
-          Email: <a href="mailto:info@papuachronicles.com"
-            >info@papuachronicles.com</a
-          >
-        </li>
-        <li>
-          Formulir kontak di halaman{" "}
-          <Link href="/kontribusi" class="hover:underline">
-            Cara Berkontribusi
-          </Link>
-        </li>
-      </ul>
+      <h2>Kontak</h2>
+      <p>Pertanyaan mengenai ketentuan ini dapat dikirim ke <a href="mailto:info@papuachronicles.com">info@papuachronicles.com</a>.</p>
     </div>
-  </div>
+  </article>
 </MainLayout>

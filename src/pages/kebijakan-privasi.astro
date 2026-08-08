@@ -1,167 +1,46 @@
 ---
-import Link from "@/components/Link.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-
-import { ArrowLeft } from "lucide-react";
 ---
 
-<MainLayout
-  title="Kebijakan Privasi"
-  description="Kebijakan privasi situs Papua Chronicles"
->
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <Link
-      href="/"
-      class="inline-flex items-center text-muted hover:text-fg transition-colors mb-8"
-    >
-      <ArrowLeft className="h-4 w-4 mr-2" />
-      Kembali ke Beranda
-    </Link>
+<MainLayout title="Kebijakan Privasi" description="Cara Papua Chronicles menangani data dan privasi pengunjung.">
+  <article class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+    <header class="mb-12 max-w-3xl">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Kebijakan privasi</h1>
+      <p class="mt-4 text-sm text-muted">Terakhir diperbarui: 9 Agustus 2026</p>
+    </header>
 
-    <h1 class="text-3xl sm:text-4xl font-bold text-fg tracking-tight mb-8">
-      Kebijakan Privasi
-    </h1>
-
-    <div class="prose dark:prose-invert max-w-none">
-      <p class="text-sm text-muted mb-6">Terakhir diperbarui: 25 Maret 2024</p>
-
-      <h2>1. Pendahuluan</h2>
+    <div class="prose max-w-3xl dark:prose-invert">
       <p>
-        "Papua Chronicles" berkomitmen untuk melindungi privasi Anda. Kebijakan
-        privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan
-        melindungi informasi yang mungkin kami kumpulkan dari pengunjung situs
-        kami.
+        Papua Chronicles dirancang sebagai situs referensi statis. Kami berusaha mengumpulkan data sesedikit mungkin dan tidak meminta akun untuk membaca konten.
       </p>
 
-      <h2>2. Informasi yang Kami Kumpulkan</h2>
+      <h2>Data yang disimpan di perangkat</h2>
       <p>
-        Kami mengumpulkan informasi minimal yang diperlukan untuk meningkatkan
-        pengalaman pengguna dan mengembangkan situs kami. Informasi yang mungkin
-        kami kumpulkan meliputi:
-      </p>
-      <ul>
-        <li>
-          <strong>Informasi Penggunaan:</strong> Data tentang bagaimana Anda berinteraksi
-          dengan situs kami, seperti halaman yang dikunjungi, waktu yang dihabiskan
-          di situs, dan tautan yang diklik.
-        </li>
-        <li>
-          <strong>Informasi Perangkat:</strong> Data tentang perangkat yang Anda gunakan
-          untuk mengakses situs kami, seperti jenis perangkat, sistem operasi, dan
-          browser.
-        </li>
-        <li>
-          <strong>Informasi yang Diberikan Secara Sukarela:</strong> Informasi yang
-          Anda berikan saat mengirimkan formulir kontak, berkontribusi konten, atau
-          berpartisipasi dalam survei.
-        </li>
-      </ul>
-
-      <h2>3. Penggunaan Cookies</h2>
-      <p>
-        Situs kami menggunakan cookies untuk meningkatkan pengalaman pengguna.
-        Cookies adalah file kecil yang disimpan di perangkat Anda yang membantu
-        kami menganalisis penggunaan situs dan menyesuaikan konten.
-      </p>
-      <p>
-        Anda dapat mengatur browser Anda untuk menolak semua cookies atau
-        memberi tahu Anda saat cookies dikirim. Namun, beberapa fitur situs
-        mungkin tidak berfungsi dengan baik tanpa cookies.
+        Saat Anda memilih tema terang atau gelap, pilihan tersebut disimpan melalui <code>localStorage</code> di browser. Data ini tetap berada di perangkat Anda dan hanya digunakan untuk mengingat tampilan yang dipilih. Situs ini tidak memakai cookie untuk fitur tersebut.
       </p>
 
-      <h2>4. Bagaimana Kami Menggunakan Informasi</h2>
-      <p>Kami menggunakan informasi yang dikumpulkan untuk:</p>
-      <ul>
-        <li>Meningkatkan dan mengembangkan situs kami</li>
-        <li>Menganalisis tren penggunaan dan preferensi pengguna</li>
-        <li>Merespons pertanyaan dan permintaan pengguna</li>
-        <li>Mengelola kontribusi konten dari pengguna</li>
-        <li>
-          Mengirimkan pembaruan atau informasi yang diminta (jika Anda memilih
-          untuk berlangganan)
-        </li>
-      </ul>
-
-      <h2>5. Berbagi Informasi</h2>
+      <h2>Data dari penyedia infrastruktur</h2>
       <p>
-        Kami tidak menjual, memperdagangkan, atau mentransfer informasi pengguna
-        kepada pihak ketiga tanpa persetujuan Anda, kecuali untuk pihak yang
-        membantu kami menjalankan situs, melakukan bisnis, atau melayani
-        pengguna, selama pihak tersebut setuju untuk menjaga kerahasiaan
-        informasi.
-      </p>
-      <p>
-        Kami mungkin juga merilis informasi Anda ketika kami yakin pelepasan
-        tersebut sesuai untuk mematuhi hukum, menegakkan kebijakan situs kami,
-        atau melindungi hak, properti, atau keamanan kami atau orang lain.
+        Situs dihosting melalui Cloudflare. Seperti penyedia layanan web pada umumnya, Cloudflare dapat memproses data teknis—misalnya alamat IP, waktu permintaan, dan informasi perangkat—untuk mengirimkan halaman, menjaga keamanan, serta mencegah penyalahgunaan. Penanganan data tersebut mengikuti kebijakan penyedia layanan terkait.
       </p>
 
-      <h2>6. Keamanan Data</h2>
+      <h2>Tautan dan kontribusi melalui GitHub</h2>
       <p>
-        Kami menerapkan berbagai langkah keamanan untuk menjaga keamanan
-        informasi pribadi Anda. Namun, tidak ada metode transmisi melalui
-        internet atau metode penyimpanan elektronik yang 100% aman. Oleh karena
-        itu, meskipun kami berusaha menggunakan cara yang dapat diterima secara
-        komersial untuk melindungi informasi pribadi Anda, kami tidak dapat
-        menjamin keamanan absolutnya.
+        Beberapa tautan membawa Anda ke GitHub. Jika Anda membuka tautan tersebut atau mengirim kontribusi, pemrosesan data berlangsung di layanan GitHub dan tunduk pada kebijakan privasi GitHub. Kontribusi, issue, dan diskusi yang dibuat pada repositori publik dapat dilihat oleh orang lain.
       </p>
 
-      <h2>7. Hak Privasi Anda</h2>
+      <h2>Email</h2>
       <p>
-        Anda memiliki hak tertentu terkait dengan informasi pribadi Anda,
-        termasuk:
-      </p>
-      <ul>
-        <li>Hak untuk mengakses informasi yang kami miliki tentang Anda</li>
-        <li>Hak untuk meminta koreksi informasi yang tidak akurat</li>
-        <li>
-          Hak untuk meminta penghapusan informasi Anda (dengan batasan tertentu)
-        </li>
-        <li>
-          Hak untuk menolak penggunaan informasi Anda untuk tujuan tertentu
-        </li>
-      </ul>
-      <p>
-        Untuk menggunakan hak-hak ini, silakan hubungi kami melalui informasi
-        kontak yang disediakan di bawah.
+        Jika Anda menghubungi kami melalui email, kami menerima alamat email dan isi pesan yang Anda kirim. Informasi tersebut digunakan untuk menjawab pesan dan tidak dijual. Hindari mengirim informasi pribadi yang tidak diperlukan.
       </p>
 
-      <h2>8. Anak-anak dan Privasi</h2>
+      <h2>Perubahan kebijakan</h2>
       <p>
-        Situs kami tidak ditujukan untuk anak-anak di bawah 13 tahun, dan kami
-        tidak dengan sengaja mengumpulkan informasi pribadi dari anak-anak di
-        bawah 13 tahun. Jika Anda adalah orang tua atau wali dan percaya bahwa
-        anak Anda telah memberikan kami informasi, silakan hubungi kami, dan
-        kami akan menghapus informasi tersebut dari catatan kami.
+        Kebijakan ini dapat diperbarui ketika fitur atau penyedia layanan berubah. Tanggal pembaruan akan dicantumkan di bagian atas halaman ini.
       </p>
 
-      <h2>9. Perubahan pada Kebijakan Privasi</h2>
-      <p>
-        Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu.
-        Perubahan akan berlaku segera setelah diposting di situs. Kami mendorong
-        pengguna untuk secara berkala memeriksa halaman ini untuk mengetahui
-        perubahan terbaru.
-      </p>
-
-      <h2>10. Kontak</h2>
-      <p>
-        Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, praktik
-        situs ini, atau interaksi Anda dengan situs ini, silakan hubungi kami
-        melalui:
-      </p>
-      <ul>
-        <li>
-          Email: <a href="mailto:info@papuachronicles.com"
-            >info@papuachronicles.com</a
-          >
-        </li>
-        <li>
-          Formulir kontak di halaman{" "}
-          <Link href="/kontribusi" class="hover:underline">
-            Cara Berkontribusi
-          </Link>
-        </li>
-      </ul>
+      <h2>Kontak</h2>
+      <p>Pertanyaan tentang privasi dapat dikirim ke <a href="mailto:info@papuachronicles.com">info@papuachronicles.com</a>.</p>
     </div>
-  </div>
+  </article>
 </MainLayout>

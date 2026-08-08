@@ -1,87 +1,45 @@
 ---
-import Link from "@/components/Link.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-
-import { ArrowLeft } from "lucide-react";
 ---
 
 <MainLayout
   title="Tentang"
-  description="Papua Chronicles adalah situs referensi terbuka tentang Papua, dikelola secara kolaboratif oleh komunitas Papua Open Source."
+  description="Tentang Papua Chronicles, prinsip editorial, dan cara proyek ini dikelola."
 >
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <Link
-      href="/"
-      class="inline-flex items-center text-muted hover:text-fg transition-colors mb-8"
-    >
-      <ArrowLeft className="h-4 w-4 mr-2" />
-      Kembali ke Beranda
-    </Link>
+  <article class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+    <header class="mb-12 max-w-3xl">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Tentang Papua Chronicles</h1>
+      <p class="mt-5 text-lg leading-relaxed text-muted">
+        Papua Chronicles adalah situs referensi terbuka untuk mempelajari sejarah, budaya, wilayah adat, tokoh, dan kehidupan di Tanah Papua.
+      </p>
+    </header>
 
-    <h1 class="text-3xl sm:text-4xl font-bold text-fg tracking-tight mb-8">
-      Tentang Papua Chronicles
-    </h1>
-
-    <div class="prose dark:prose-invert max-w-none">
+    <div class="prose max-w-3xl dark:prose-invert">
+      <h2>Mengapa situs ini dibuat</h2>
       <p>
-        Papua Chronicles adalah situs referensi terbuka tentang Papua — sejarah,
-        budaya, alam, dan kondisi masyarakatnya hari ini. Situs ini dikelola
-        secara kolaboratif oleh komunitas Papua Open Source dan bisa diakses
-        secara gratis oleh siapa saja.
+        Pengetahuan tentang Papua tersebar di buku, arsip, jurnal, laporan, dan cerita masyarakat. Sebagian sumber sulit ditemukan, sementara sebagian lainnya memakai bahasa yang tidak mudah dipahami. Situs ini mencoba menyusun bahan-bahan tersebut menjadi titik awal yang ringkas dan dapat ditelusuri kembali.
       </p>
 
-      <h2>Latar Belakang</h2>
-      <p>
-        Papua punya sejarah yang panjang, lebih dari 250 suku bangsa, dan
-        kekayaan alam yang luar biasa. Tapi informasi tentang Papua masih
-        tersebar di mana-mana — ada yang susah diakses, ada yang tidak lengkap,
-        ada yang memang bias.
-      </p>
-      <p>
-        Papua Chronicles hadir untuk mengumpulkan informasi itu di satu tempat,
-        dalam bahasa yang mudah dipahami, dan terbuka untuk terus diperbaiki
-        bersama.
-      </p>
-
-      <h2>Cara Kerja</h2>
-      <p>
-        Semua konten di situs ini dibuat dan dijaga secara kolaboratif melalui
-        GitHub. Siapa saja bisa mengusulkan perubahan, menambahkan topik baru,
-        atau memperbaiki informasi yang sudah ada. Tidak perlu jadi ahli — cukup
-        punya niat baik dan mau teliti.
-      </p>
-      <p>
-        Seluruh konten tersedia di bawah lisensi MIT, artinya bebas digunakan
-        kembali selama menyertakan atribusi.
-      </p>
-
-      <h2>Siapa yang Mengelola Ini</h2>
-      <p>
-        Situs ini dikelola oleh sukarelawan dari komunitas Papua Open Source —
-        gabungan akademisi, mahasiswa, jurnalis, dan masyarakat umum yang punya
-        kepedulian terhadap Papua. Tidak ada organisasi formal di baliknya,
-        hanya orang-orang yang ingin berkontribusi.
-      </p>
-
-      <h2>Kontak</h2>
+      <h2>Prinsip kami</h2>
       <ul>
-        <li>
-          Email: <a href="mailto:info@papuachronicles.com"
-            >info@papuachronicles.com</a
-          >
-        </li>
-        <li>
-          GitHub: <a href="https://github.com/papuaopensource/papuachronicles"
-            >github.com/papuaopensource/papuachronicles</a
-          >
-        </li>
-        <li>
-          Diskusi: <a
-            href="https://github.com/papuaopensource/papuachronicles/discussions"
-            >GitHub Discussions</a
-          >
-        </li>
+        <li><strong>Dapat diperiksa.</strong> Klaim faktual penting perlu disertai sumber yang bisa ditelusuri.</li>
+        <li><strong>Terbuka untuk perbaikan.</strong> Kesalahan, kekurangan konteks, dan sudut pandang yang terlewat dapat diajukan melalui GitHub.</li>
+        <li><strong>Bahasa yang jelas.</strong> Konten ditulis dalam bahasa Indonesia yang lugas tanpa menyederhanakan persoalan yang kompleks.</li>
+        <li><strong>Menghormati keragaman.</strong> Papua tidak diperlakukan sebagai satu pengalaman yang seragam. Perbedaan wilayah, masyarakat, dan perspektif perlu terlihat dalam penyajian.</li>
       </ul>
+
+      <h2>Cara kerja</h2>
+      <p>
+        Konten disimpan sebagai berkas terbuka di GitHub. Kontributor dapat mengusulkan tulisan baru, memperbaiki informasi, atau menambahkan sumber melalui pull request. Perubahan dapat dilihat dan ditinjau sebelum diterbitkan.
+      </p>
+      <p>
+        Papua Chronicles dikelola oleh komunitas Papua Open Source. Situs ini bukan lembaga pemerintah, media berita, atau pengganti sumber akademik. Untuk riset dan keputusan penting, gunakan halaman ini sebagai pengantar dan periksa sumber aslinya.
+      </p>
+
+      <h2>Hubungi dan berkontribusi</h2>
+      <p>
+        Kirim email ke <a href="mailto:info@papuachronicles.com">info@papuachronicles.com</a>, baca <a href="/kontribusi/">panduan kontribusi</a>, atau kunjungi <a href="https://github.com/papuaopensource/papuachronicles">repositori GitHub</a> untuk melihat dan mengusulkan perubahan.
+      </p>
     </div>
-  </div>
+  </article>
 </MainLayout>
