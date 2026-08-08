@@ -25,13 +25,11 @@ const {
     <a
       href={link}
       class:list={[
-        "group flex items-center gap-4 rounded-xl border border-border bg-surface p-5 hover:bg-surface-hover transition-colors",
+        "group flex items-center gap-4 rounded-xl border border-border bg-surface p-5 transition-[background-color,border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-brand/45 hover:bg-surface-hover active:scale-[0.99]",
         className,
       ]}
     >
-      <div class="h-10 w-10 shrink-0 rounded-lg border border-border flex items-center justify-center group-hover:border-fg/30 transition-colors">
-        <Icon className="h-4.5 w-4.5 text-muted group-hover:text-fg transition-colors" />
-      </div>
+      <Icon className="h-5 w-5 shrink-0 text-muted transition-colors group-hover:text-brand" />
       <div class="flex-1 min-w-0">
         <h2 class="font-medium leading-snug">{title}</h2>
         <p class="text-sm text-muted leading-relaxed mt-0.5">{description}</p>
@@ -42,15 +40,13 @@ const {
     <a
       href={link}
       class:list={[
-        "group block rounded-xl border border-border bg-surface p-5 hover:bg-surface-hover transition-colors",
+        "group block min-h-48 rounded-xl border border-border bg-surface p-5 transition-[background-color,border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-brand/45 hover:bg-surface-hover active:scale-[0.99]",
         className,
       ]}
     >
-      <div class="flex items-center justify-between mb-4">
-        <div class="h-10 w-10 rounded-lg border border-border flex items-center justify-center group-hover:border-fg/30 transition-colors">
-          <Icon className="h-4.5 w-4.5 text-muted group-hover:text-fg transition-colors" />
-        </div>
-        <ArrowRight className="h-4 w-4 text-muted opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+      <div class="flex items-center justify-between mb-5">
+        <Icon className="h-5 w-5 text-muted transition-colors group-hover:text-brand" />
+        <ArrowRight className="h-4 w-4 text-muted opacity-0 transition-[opacity,transform] group-hover:opacity-100 group-hover:translate-x-0.5" />
       </div>
       <h2 class="font-medium leading-snug mb-1.5">{title}</h2>
       <p class="text-sm text-muted leading-relaxed">{description}</p>
