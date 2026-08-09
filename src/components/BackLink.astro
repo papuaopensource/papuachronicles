@@ -1,0 +1,20 @@
+---
+import { ArrowLeft } from "lucide-react";
+
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<nav aria-label="Navigasi kembali">
+  <a
+    href={href}
+    class="group inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-2 text-sm font-medium text-muted transition-[background-color,border-color,color,transform] hover:border-fg/25 hover:bg-surface-hover hover:text-fg active:scale-[0.96]"
+  >
+    <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+    {label}
+  </a>
+</nav>

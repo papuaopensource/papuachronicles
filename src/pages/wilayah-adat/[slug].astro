@@ -1,8 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
-import { ArrowLeft } from "lucide-react";
 import MainLayout from "@/layouts/MainLayout.astro";
-import Link from "@/components/Link.astro";
+import BackLink from "@/components/BackLink.astro";
 import DaftarPustaka from "@/components/DaftarPustaka.astro";
 
 export async function getStaticPaths() {
@@ -21,37 +20,46 @@ const { Content } = await render(entry);
   title={entry.data.name}
   description={entry.data.description}
 >
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <Link
-      href="/wilayah-adat/"
-      class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors mb-12"
-    >
-      <ArrowLeft className="h-4 w-4" />
-      Wilayah Adat
-    </Link>
+  <article class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="mb-10">
+      <BackLink href="/wilayah-adat/" label="Kembali ke daftar wilayah" />
+    </div>
 
-    <header class="mb-12">
+    <header class="mb-12 max-w-3xl">
       <p class="text-xs font-medium uppercase tracking-widest text-muted mb-3">
         Wilayah Adat {String(entry.data.order ?? "").padStart(2, "0")}
       </p>
-      <h1 class="text-4xl sm:text-5xl font-bold text-fg tracking-tight mb-4">
+      <h1 class="text-4xl sm:text-5xl font-bold text-fg tracking-tight mb-4 text-balance">
         {entry.data.name}
       </h1>
       <p class="text-lg text-muted leading-relaxed max-w-2xl mb-8">
         {entry.data.description}
       </p>
 
-      <div class="w-16 h-px bg-border"></div>
+      <div class="grid grid-cols-1 gap-6 border-y border-border py-6 sm:grid-cols-[10rem_1fr]">
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wider text-muted">Pusat utama</p>
+          <p class="mt-1.5 font-medium text-fg">{entry.data.ibukota}</p>
+        </div>
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wider text-muted">Masyarakat adat</p>
+          <ul class="mt-2 flex flex-wrap gap-2" aria-label="Masyarakat adat di wilayah ini">
+            {entry.data.suku.map((suku: string) => (
+              <li class="rounded-full border border-border px-3 py-1 text-xs text-muted">{suku}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <div class="prose dark:prose-invert max-w-none">
+    <div class="prose dark:prose-invert max-w-3xl prose-headings:scroll-mt-24">
       <Content />
     </div>
 
     {
       entry.data.references && entry.data.references.length > 0 && (
-        <DaftarPustaka references={entry.data.references} />
+        <div class="max-w-3xl"><DaftarPustaka references={entry.data.references} /></div>
       )
     }
-  </div>
+  </article>
 </MainLayout>

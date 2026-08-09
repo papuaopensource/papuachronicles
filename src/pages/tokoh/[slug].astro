@@ -1,8 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
-import { ArrowLeft } from "lucide-react";
 import MainLayout from "@/layouts/MainLayout.astro";
-import Link from "@/components/Link.astro";
+import BackLink from "@/components/BackLink.astro";
 import DaftarPustaka from "@/components/DaftarPustaka.astro";
 
 export async function getStaticPaths() {
@@ -21,19 +20,15 @@ const { Content } = await render(entry);
   title={entry.data.name}
   description={`${entry.data.role} — ${entry.data.region ?? "Papua"}`}
 >
-  <div class="max-w-5xl mx-auto px-4 py-12">
-    <Link
-      href="/tokoh/"
-      class="inline-flex items-center gap-2 text-sm text-muted hover:text-fg transition-colors mb-12"
-    >
-      <ArrowLeft className="h-4 w-4" />
-      Tokoh Papua
-    </Link>
+  <article class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+    <div class="mb-10">
+      <BackLink href="/tokoh/" label="Kembali ke daftar tokoh" />
+    </div>
 
-    <header class="mb-10">
-      <div class="flex items-center gap-4 mb-6">
+    <header class="mb-12 max-w-3xl">
+      <div class="flex items-start gap-4 sm:gap-5 mb-6">
         <div
-          class="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-lg font-bold text-fg shrink-0 select-none"
+          class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center text-lg font-bold text-brand shrink-0 select-none"
         >
           {
             entry.data.name
@@ -44,10 +39,10 @@ const { Content } = await render(entry);
           }
         </div>
         <div>
-          <h1 class="text-2xl sm:text-3xl font-bold text-fg tracking-tight">
+          <h1 class="text-3xl sm:text-4xl font-bold text-fg tracking-tight text-balance">
             {entry.data.name}
           </h1>
-          <p class="text-muted mt-0.5">{entry.data.role}</p>
+          <p class="text-muted mt-1 leading-relaxed">{entry.data.role}</p>
         </div>
       </div>
 
@@ -68,17 +63,17 @@ const { Content } = await render(entry);
         }
       </div>
 
-      <div class="w-16 h-px bg-border mt-8"></div>
+      <div class="w-16 h-0.5 bg-brand mt-8"></div>
     </header>
 
-    <div class="prose dark:prose-invert max-w-none">
+    <div class="prose dark:prose-invert max-w-3xl prose-headings:scroll-mt-24">
       <Content />
     </div>
 
     {
       entry.data.references && entry.data.references.length > 0 && (
-        <DaftarPustaka references={entry.data.references} />
+        <div class="max-w-3xl"><DaftarPustaka references={entry.data.references} /></div>
       )
     }
-  </div>
+  </article>
 </MainLayout>
