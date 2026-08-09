@@ -1,0 +1,224 @@
+---
+import { getCollection } from "astro:content";
+import { Search, X } from "lucide-react";
+
+const [faq, glosarium, sejarah, tokoh, wilayah] = await Promise.all([
+  getCollection("faq"),
+  getCollection("glosarium"),
+  getCollection("sejarah"),
+  getCollection("tokoh"),
+  getCollection("wilayah"),
+]);
+
+const plainText = (value: string) =>
+  value
+    .replace(/^---[\s\S]*?---/, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[#*_`>[\]()]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const searchItems = [
+  ...faq.map((entry) => ({
+    title: entry.data.question,
+    category: "FAQ",
+    href: `/faq/#${entry.id}`,
+    text: plainText(entry.body ?? ""),
+  })),
+  ...glosarium.map((entry) => ({
+    title: entry.data.term,
+    category: "Glosarium",
+    href: `/glosarium/#${entry.id}`,
+    text: plainText(entry.body ?? ""),
+  })),
+  ...sejarah.map((entry) => ({
+    title: entry.data.title,
+    category: `Sejarah · ${entry.data.year}`,
+    href: `/sejarah/#${entry.id}`,
+    text: plainText(entry.body ?? ""),
+  })),
+  ...tokoh.map((entry) => ({
+    title: entry.data.name,
+    category: "Tokoh Papua",
+    href: `/tokoh/${entry.id}/`,
+    text: `${entry.data.role} ${entry.data.region ?? ""} ${plainText(entry.body ?? "")}`,
+  })),
+  ...wilayah.map((entry) => ({
+    title: entry.data.name,
+    category: "Wilayah Adat",
+    href: `/wilayah-adat/${entry.id}/`,
+    text: `${entry.data.description} ${entry.data.suku.join(" ")} ${plainText(entry.body ?? "")}`,
+  })),
+];
+
+const serializedItems = JSON.stringify(searchItems).replace(/</g, "\\u003c");
+---
+
+<dialog data-search-dialog aria-label="Pencarian Papua Chronicles" class="m-auto w-[calc(100%-2rem)] max-w-2xl rounded-2xl border border-border bg-bg p-0 text-fg backdrop:bg-black/55 backdrop:backdrop-blur-sm">
+  <div class="flex min-h-[28rem] max-h-[min(42rem,calc(100vh-2rem))] flex-col">
+    <div class="flex items-center gap-3 border-b border-border px-4 sm:px-5">
+      <Search className="h-5 w-5 shrink-0 text-muted" aria-hidden="true" />
+      <label for="site-search" class="sr-only">Cari di Papua Chronicles</label>
+      <input
+        id="site-search"
+        data-search-input
+        type="search"
+        autocomplete="off"
+        placeholder="Cari tokoh, wilayah, istilah, atau peristiwa…"
+        class="h-16 min-w-0 flex-1 bg-transparent text-base text-fg outline-none placeholder:text-muted"
+      />
+      <button type="button" data-search-close class="grid h-10 w-10 shrink-0 place-items-center rounded-full text-muted transition-colors hover:bg-surface-hover hover:text-fg" aria-label="Tutup pencarian">
+        <X className="h-5 w-5" />
+      </button>
+    </div>
+
+    <div class="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
+      <p data-search-status role="status" aria-live="polite" class="px-2 py-8 text-center text-sm text-muted">Ketik untuk mencari seluruh koleksi.</p>
+      <ul data-search-results class="hidden space-y-1" aria-label="Hasil pencarian"></ul>
+    </div>
+
+    <div class="border-t border-border px-5 py-3 text-xs text-muted">
+      Gunakan <kbd class="rounded border border-border px-1.5 py-0.5 font-sans">Esc</kbd> untuk menutup
+    </div>
+  </div>
+</dialog>
+
+<script type="application/json" id="search-index" set:html={serializedItems}></script>
+
+<style>
+  [data-search-dialog]::backdrop {
+    background: rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(4px);
+  }
+
+  [data-search-results] a {
+    transform-origin: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-search-dialog],
+    [data-search-results],
+    [data-search-results] li {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  type SearchItem = { title: string; category: string; href: string; text: string };
+
+  const dialog = document.querySelector<HTMLDialogElement>("[data-search-dialog]");
+  const input = document.querySelector<HTMLInputElement>("[data-search-input]");
+  const results = document.querySelector<HTMLUListElement>("[data-search-results]");
+  const status = document.querySelector<HTMLElement>("[data-search-status]");
+  const indexNode = document.querySelector<HTMLScriptElement>("#search-index");
+  const items: SearchItem[] = indexNode ? JSON.parse(indexNode.textContent ?? "[]") : [];
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const easing = "cubic-bezier(0.2, 0, 0, 1)";
+
+  const normalize = (value: string) => value.toLocaleLowerCase("id").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const escapeHtml = (value: string) => value.replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char] ?? char);
+
+  function renderResults(query: string) {
+    if (!results || !status) return;
+    const normalizedQuery = normalize(query.trim());
+    if (normalizedQuery.length < 2) {
+      results.classList.add("hidden");
+      results.innerHTML = "";
+      status.classList.remove("hidden");
+      status.classList.remove("sr-only");
+      status.textContent = query ? "Ketik setidaknya dua karakter." : "Ketik untuk mencari seluruh koleksi.";
+      return;
+    }
+
+    const matches = items
+      .filter((item) => normalize(`${item.title} ${item.category} ${item.text}`).includes(normalizedQuery))
+      .slice(0, 12);
+
+    if (matches.length === 0) {
+      results.classList.add("hidden");
+      status.classList.remove("hidden");
+      status.classList.remove("sr-only");
+      status.textContent = `Tidak ada hasil untuk “${query.trim()}”.`;
+      return;
+    }
+
+    status.classList.remove("hidden");
+    status.classList.add("sr-only");
+    status.textContent = `${matches.length} hasil ditemukan.`;
+    results.classList.remove("hidden");
+    results.innerHTML = matches.map((item) => `
+      <li>
+        <a href="${escapeHtml(item.href)}" class="group flex items-center gap-4 rounded-xl px-3 py-3 transition-colors hover:bg-surface-hover focus-visible:bg-surface-hover">
+          <span class="min-w-0 flex-1">
+            <span class="block truncate font-medium text-fg">${escapeHtml(item.title)}</span>
+            <span class="mt-0.5 block text-xs text-muted">${escapeHtml(item.category)}</span>
+          </span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </li>`).join("");
+
+    if (!reduceMotion.matches) {
+      results.querySelectorAll<HTMLLIElement>("li").forEach((item, index) => {
+        item.animate(
+          [
+            { opacity: 0, transform: "translateY(6px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          {
+            duration: 180,
+            delay: index * 28,
+            easing,
+            fill: "backwards",
+          },
+        );
+      });
+    }
+  }
+
+  function openDialog() {
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
+    if (!reduceMotion.matches) {
+      dialog.getAnimations().forEach((animation) => animation.cancel());
+      dialog.animate(
+        [
+          { opacity: 0, transform: "translateY(8px) scale(0.985)" },
+          { opacity: 1, transform: "translateY(0) scale(1)" },
+        ],
+        { duration: 180, easing },
+      );
+    }
+    requestAnimationFrame(() => input?.focus());
+  }
+
+  function closeDialog() {
+    if (!dialog?.open) return;
+    if (reduceMotion.matches) {
+      dialog.close();
+      return;
+    }
+    dialog.getAnimations().forEach((animation) => animation.cancel());
+    const animation = dialog.animate(
+      [
+        { opacity: 1, transform: "translateY(0) scale(1)" },
+        { opacity: 0, transform: "translateY(5px) scale(0.99)" },
+      ],
+      { duration: 120, easing },
+    );
+    animation.addEventListener("finish", () => dialog.close(), { once: true });
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-search-open]").forEach((button) => {
+    button.addEventListener("click", openDialog);
+  });
+  document.querySelector("[data-search-close]")?.addEventListener("click", closeDialog);
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) closeDialog();
+  });
+  dialog?.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeDialog();
+  });
+  input?.addEventListener("input", () => renderResults(input.value));
+</script>

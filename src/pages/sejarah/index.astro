@@ -29,7 +29,7 @@ const rendered = await Promise.all(events.map((e) => render(e)));
           const { Content } = rendered[i];
           const refs = event.data.references ?? [];
           return (
-            <div class="group relative sm:pl-32 pb-12 last:pb-0">
+            <div id={event.id} class="group relative scroll-mt-24 sm:pl-32 pb-12 last:pb-0">
               <!-- Year marker -->
               <div class="sm:absolute sm:left-0 sm:top-0 mb-3 sm:mb-0 flex sm:flex-col items-center sm:items-end gap-3 sm:gap-1">
                 <span class="text-sm font-mono font-semibold text-fg sm:w-16 sm:text-right">

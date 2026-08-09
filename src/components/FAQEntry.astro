@@ -10,7 +10,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<details class="group border-b border-border py-5 last:border-b-0 open:pb-7">
+<details id={entry.id} class="group scroll-mt-24 border-b border-border py-5 last:border-b-0 open:pb-7">
   <summary
     class="flex items-center justify-between gap-4 cursor-pointer list-none rounded-md font-medium text-fg transition-colors hover:text-brand"
   >
@@ -23,3 +23,10 @@ const { Content } = await render(entry);
     <Content />
   </div>
 </details>
+
+<script>
+  const target = location.hash
+    ? document.querySelector<HTMLDetailsElement>(`details${location.hash}`)
+    : null;
+  if (target) target.open = true;
+</script>
